@@ -1,0 +1,34 @@
+using UnityEngine;
+
+public class ParallaxBackground : MonoBehaviour
+{
+    [System.Serializable]
+    public class ParallaxLayer
+    {
+        public Transform layerTransform;
+        [Range(0, 1)] public float parallaxFactor;
+    }
+
+    public ParallaxLayer[] layers;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Vector3 lastCameraPosition;
+
+    void Start()
+    {
+        lastCameraPosition = cameraTransform.position;
+    }
+
+    void LateUpdate()
+    {
+        Vector3 cameraDelta = cameraTransform.position - lastCameraPosition;
+
+        foreach(ParallaxLayer layer in layers)
+        {
+            float parallaxX = cameraDelta.x * layer.parallaxFactor;
+            float ParallaxY = cameraDelta.y * layer.parallaxFactor;
+            layer.layerTransform.position += new Vector3(parallaxX, ParallaxY, 0); 
+        }
+
+        lastCameraPosition = cameraTransform.position;
+    }
+}
