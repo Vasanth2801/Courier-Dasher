@@ -28,6 +28,7 @@ public class FireTrap : MonoBehaviour
 
             if(isActive)
             {
+                PlayerHealth.instance.TakeDamage(10);
                 Debug.Log("Damage Doing to the Player");
             }
         }

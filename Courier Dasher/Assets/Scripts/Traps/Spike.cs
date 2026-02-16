@@ -13,6 +13,7 @@ public class Spike : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            PlayerHealth.instance.TakeDamage(10);
             Debug.Log("Damage Done");
         }
     }

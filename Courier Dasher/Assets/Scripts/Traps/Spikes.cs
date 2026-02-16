@@ -6,6 +6,7 @@ public class Spikes : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            PlayerHealth.instance.TakeDamage(10);
             Debug.Log("Damage Done");
         }
     }
